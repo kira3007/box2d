@@ -20,11 +20,11 @@
             return this; 
         }
         getCenter : function (  ) {
-           return new Vector2(  ).addVectors( this.lowerBound, this.upperBound ).scalar( 0.5 );   
+           return this.lowerBound.clone().add( this.upperBound ).scalar( 0.5 );   
         }, 
 
         getExtents : function (  ) {
-            return new Vector2().subVectors (this.upperBound, this.lowerBound ).scalar( 0.5 ); 
+            return this.upperBound.clone().sub( this.lowerBound ).scalar( 0.5 ); 
         }, 
 
         contains : function ( aabb ) {
@@ -34,7 +34,42 @@
                    aabb.upperBound.y <= this.upperBound.y 
         }, 
 
-        rayCast : function (  ) {}, 
+        rayCast : function (input,output) {
+			var tmin = -Number.MAX_VALUE,
+				tmax = Number.MAX_VALUE,
+				start = input.p1,
+				d = input.p2.clone().sub(input.p1);
+			
+			//var output = new box2d.output();
+			var prop = ['x','y'];
+			for(var i = 0,len=prop.length;i<len;i++){
+				var p = prop[i];
+				if(Math.abs(d[p]) < Number.MIN_VALUE){
+					if(start[p] < this.lowerBound[p] || this.uppperBound[p] < start[p]) return false;					
+				}else{
+					var inv_d = 1.0 / d[p];
+					var t1 = (this.lowerBound[p] - start[p]) * inv_d;
+					var t2 = (this.upperBound[p] - start[p]) * inv_d;
+					var s = -1.0, t=0;
+					
+					if(t1 > t2) {
+						t = t1,t1=t2,t2=t;
+						s = 1.0;
+					}
+					
+					if(t1 > tmin) {
+						output.normal.setZero()[p] = s;
+						tmin = t1;
+					}
+					
+					tmax = Math.min(tmax,t2);
+					if(tmin > tmax) return false;
+				}
+			}
+			
+			output.fraction = tmin;
+			return true;
+		}, 
 
         testOverlap : function ( aabb ) {
             var d1X = other.lowerBound.x - this.upperBound.x;

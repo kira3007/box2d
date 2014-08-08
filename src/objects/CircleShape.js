@@ -1,7 +1,11 @@
 (function(box2d){
-	box2d.circleShape = function(){
+	box2d.circleShape = function(radius){
+		arguments[0] = arguments[0]||0;
+		
 		box2d.shape.prototype.constructor.apply(this,arguments);
 		this.locPosition = new Vector2();
+		this.type = box2d.shape.e_circleShape;
+		this.radius = radius;
 	};
 	
 	box2d.inherit(box2d.circleShape,box2d.shape);
@@ -34,6 +38,10 @@
 
         computeMass : function(massData, density){
              
-        }
+        },
+		
+		computeSubmergedArea : function(){},
+		
+		
 	};
 })(box2d);

@@ -13,6 +13,10 @@
             return this; 
         },
         
+		setZero : function(){
+			this.x = this.y = 0;
+			return this;
+		},
         copy : function ( v ){ 
             this.x = v.x; 
             this.y = v.y;             
