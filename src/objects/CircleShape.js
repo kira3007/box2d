@@ -9,6 +9,31 @@
 	box2d.circleShape.prototype = {
 		constructor : box2d.circleShape,
 		
-		set : function(){},
+		set : function(other){
+            this.__super.set.call(this, other); 
+
+            if(box2d.is(other, box2d.shape)){
+                this.locPosition.set(other.locPosition); 
+            }
+            return this; 
+        },
+
+        testPoint : function(transform, p){
+            var d = this.getWorldPosition(transform).sub(p); 
+
+            return d.lengthSq <= this.radius * this.radius; 
+        }, 
+
+        rayCast : function(){}
+        
+        computeAABB : function(aabb, transform){
+            var w = this.getWorldPosition(transform);  
+            aabb.set(w, this.radius); 
+            return this; 
+        }, 
+
+        computeMass : function(massData, density){
+             
+        }
 	};
 })(box2d);

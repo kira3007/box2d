@@ -60,19 +60,19 @@
         }, 
 		min: function ( v ) {
 
-		if ( this.x > v.x ) {
+            if ( this.x > v.x ) {
 
-			this.x = v.x;
+                this.x = v.x;
 
-		}
+            }
 
-		if ( this.y > v.y ) {
+            if ( this.y > v.y ) {
 
-			this.y = v.y;
+                this.y = v.y;
 
-		}
+            }
 
-		return this;
+            return this;
 
         },
 

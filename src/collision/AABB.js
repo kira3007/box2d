@@ -14,6 +14,11 @@
             return valid && this.lowerBound.isValid (  ) && this.upperBound.isValid (  ) ; 
         }, 
         
+        set : function(center, radius){
+            this.lowerBound.set(center.x - radius, center.y - radius); 
+            this.upperBound.set(center.x + radius, center.y + radius); 
+            return this; 
+        }
         getCenter : function (  ) {
            return new Vector2(  ).addVectors( this.lowerBound, this.upperBound ).scalar( 0.5 );   
         }, 

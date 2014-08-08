@@ -14,8 +14,12 @@
 			return this.type;
 		},
 		
-		testPoint = function (xf, p) {
+		testPoint : function (xf, p) {
 			return false;
-		}
+		}, 
+
+        getWorldPosition : function(transform){ 
+            return this.locPosition.clone().applyTransform(transform);  
+        }
 	};
 })(box2d);
