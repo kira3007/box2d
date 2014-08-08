@@ -74,81 +74,81 @@
 
 		return this;
 
-	},
+        },
 
-	max: function ( v ) {
+        max: function ( v ) {
 
-		if ( this.x < v.x ) {
+            if ( this.x < v.x ) {
 
-			this.x = v.x;
+                this.x = v.x;
 
-		}
+            }
 
-		if ( this.y < v.y ) {
+            if ( this.y < v.y ) {
 
-			this.y = v.y;
+                this.y = v.y;
 
-		}
+            }
 
-		return this;
+            return this;
 
-	},
-	clamp: function ( min, max ) {
+        },
+        clamp: function ( min, max ) {
 
-		// This function assumes min < max, if this assumption isn't true it will not operate correctly
+            // This function assumes min < max, if this assumption isn't true it will not operate correctly
 
-		if ( this.x < min.x ) {
+            if ( this.x < min.x ) {
 
-			this.x = min.x;
+                this.x = min.x;
 
-		} else if ( this.x > max.x ) {
+            } else if ( this.x > max.x ) {
 
-			this.x = max.x;
+                this.x = max.x;
 
-		}
+            }
 
-		if ( this.y < min.y ) {
+            if ( this.y < min.y ) {
 
-			this.y = min.y;
+                this.y = min.y;
 
-		} else if ( this.y > max.y ) {
+            } else if ( this.y > max.y ) {
 
-			this.y = max.y;
+                this.y = max.y;
 
-		}
+            }
 
-		return this;
-	},
-	lengthSq: function () {
+            return this;
+        },
+        lengthSq: function () {
 
-		return this.x * this.x + this.y * this.y;
+            return this.x * this.x + this.y * this.y;
 
-	},
+        },
 
-	length: function () {
+        length: function () {
 
-		return Math.sqrt( this.lengthSq() );
+            return Math.sqrt( this.lengthSq() );
 
-	},
+        },
 
-	normalize: function () {
+        normalize: function () {
 
-		return this.scalar( 1 / this.length() );
+            return this.scalar( 1 / this.length() );
 
-	},
+        },
 
-	distanceTo: function ( v ) {
+        distanceTo: function ( v ) {
 
-		return Math.sqrt( this.distanceToSquared( v ) );
+            return Math.sqrt( this.distanceToSquared( v ) );
 
-	},
+        },
 
-	distanceToSquared: function ( v ) {
+        distanceToSquared: function ( v ) {
 
-		var dx = this.x - v.x, dy = this.y - v.y;
-		return dx * dx + dy * dy;
+            var dx = this.x - v.x, dy = this.y - v.y;
+            return dx * dx + dy * dy;
 
-	},
+        },
         applyMatrix2 : function ( m ) {
             var x = this.x, 
                 y = this.y, 
