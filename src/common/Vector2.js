@@ -36,32 +36,38 @@
         }, 
         dot : function ( v ) {
             return this.x * v.x + this.y * v.y;  
-        }, 
+        },
+		cross : function( v ){
+			return this.x * v.y - this.y * v.x;
+		},
         add : function ( v ) {
             this.x += v.x; 
             this.y += v.y; 
             return this;     
         }, 
-        addVectors : function( a, b ){
-            this.x = a.x + b.x; 
-            this.y = a.y + b.y;  
-            return this; 
+        addVectors : function( a ){
+            //this.x = a.x + b.x; 
+            //this.y = a.y + b.y;  
+            return new box2d.Vector2(this.x + a.x, this.y + a.y); 
         }, 
         sub : function ( v ) {
             this.x -= v.x; 
             this.y -= v.y; 
             return this;  
         }, 
-        subVectors : function ( a, b ) {
-            this.x = a.x - b.x; 
-            this.y = a.y - b.y; 
-            return this; 
+        subVectors : function ( a ) {
+            //this.x = a.x - b.x; 
+            //this.y = a.y - b.y; 
+            return new box2d.Vector2(this.x - a.x, this.y - a.y); 
         }, 
         scalar : function ( s ) {
             this.x *= s; 
             this.y *= s; 
             return this;  
         }, 
+		getNormal : function(){
+			return new box2d.Vector2(this.y, -1 * this.x);
+		},
 		min: function ( v ) {
 
             if ( this.x > v.x ) {

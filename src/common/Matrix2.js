@@ -5,7 +5,7 @@
     }; 
 
     box2d.Matrix2.prototype = {
-        constuctor : box2d.Matrix3, 
+        constuctor : box2d.Matrix2, 
 
         set : function ( n11, n12, n21, n22 ) {
             var te = this.elements; 

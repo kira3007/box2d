@@ -8,7 +8,7 @@
         constuctor : box2d.AABB, 
 
         isValid : function (  ) {
-            var dx = new Vector2().subVectors (this.upperBound, this.lowerBound ); 
+            var dx = this.upperBound.subVectors ( this.lowerBound ); 
 
             var valid  =  dx.x >= 0 && dx.y >= 0; 
             return valid && this.lowerBound.isValid (  ) && this.upperBound.isValid (  ) ; 
@@ -20,11 +20,11 @@
             return this; 
         }
         getCenter : function (  ) {
-           return this.lowerBound.clone().add( this.upperBound ).scalar( 0.5 );   
+           return this.lowerBound.addVectors( this.upperBound ).scalar( 0.5 );   
         }, 
 
         getExtents : function (  ) {
-            return this.upperBound.clone().sub( this.lowerBound ).scalar( 0.5 ); 
+            return this.upperBound.subVectors( this.lowerBound ).scalar( 0.5 ); 
         }, 
 
         contains : function ( aabb ) {
@@ -38,7 +38,7 @@
 			var tmin = -Number.MAX_VALUE,
 				tmax = Number.MAX_VALUE,
 				start = input.p1,
-				d = input.p2.clone().sub(input.p1);
+				d = input.p2.subVectors(input.p1);
 			
 			//var output = new box2d.output();
 			var prop = ['x','y'];
