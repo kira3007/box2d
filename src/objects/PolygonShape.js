@@ -83,6 +83,7 @@
 			this.normals[1] = this.normals[0].clone().scalar(-1);
 			return this;
 		},
+		testPoint : function(){},
 		computeCentroid : function(){
 			var _this = this,
 				area = 0.0,
