@@ -22,7 +22,7 @@
 			return this._incidentVertex;
 		},
 		setIncVertex : function(value){
-			this._incidentVertex = value;
+			this._incidentVertex = value || 0;
 			this._id._key = (this._id._key & 0xff00ffff) | ((this._incidentVertex << 16) & 0x00ff0000);
 			return this;
 		},
@@ -30,7 +30,7 @@
 			return this._flip;
 		},
 		setFlip : function(value){
-			this._flip = value;
+			this._flip = value || 0;
 			this._id._key = (this._id._key & 0x00ffffff) | ((this._flip << 24) & 0xff000000);
 			return this;
 		}

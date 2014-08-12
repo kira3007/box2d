@@ -15,8 +15,13 @@
         }, 
         
         set : function(center, radius){
-            this.lowerBound.set(center.x - radius, center.y - radius); 
-            this.upperBound.set(center.x + radius, center.y + radius); 
+            if(radius){
+                this.lowerBound.set(center.x - radius, center.y - radius); 
+                this.upperBound.set(center.x + radius, center.y + radius); 
+            }else{
+                this.lowerBound = center.lowerBound.clone(); 
+                this.upperBound = center.upperBound.clone();  
+            }
             return this; 
         }
         getCenter : function (  ) {
@@ -25,6 +30,13 @@
 
         getExtents : function (  ) {
             return this.upperBound.subVectors( this.lowerBound ).scalar( 0.5 ); 
+        }, 
+        extension : function(dx, dy){
+            this.lowerBound.x -= dx; 
+            this.lowerBound.y -= dy; 
+            this.upperBound.x += dx; 
+            this.upperBound.y += dy;  
+            return this; 
         }, 
 
         contains : function ( aabb ) {

@@ -49,10 +49,9 @@
 			return false;
 		},
         
-        computeAABB : function(aabb, transform){
+        computeAABB : function(transform){
             var w = this.getWorldPosition(transform);  
-            aabb.set(w, this.radius); 
-            return this; 
+            return new box2d.AABB().set(w, this.radius); 
         }, 
 
         computeMass : function(massData, density){
